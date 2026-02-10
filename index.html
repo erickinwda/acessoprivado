@@ -3,6 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seu acesso está pronto</title>
+
+  <!-- META PIXEL BASE -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+
+  fbq('init', '3106420649560520');
+  </script>
+
+  <!-- PURCHASE + CAPI (DEDUP) -->
+  <script>
+  const metaEventId =
+    'purchase_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+
+  fbq('track', 'Purchase', {}, { eventID: metaEventId });
+
+  fetch('/api/meta', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      event_name: 'Purchase',
+      event_id: metaEventId,
+      url: window.location.href
+    })
+  });
+  </script>
+
+</head>
+
+<body>
   <title>Acesso Privado</title>
 
   <style>
@@ -120,3 +157,4 @@
   </div>
 </body>
 </html>
+
