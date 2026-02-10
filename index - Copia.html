@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acesso Privado</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at top, #1a1a1a, #0b0b0b);
+      font-family: Arial, sans-serif;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .box {
+      width: 92%;
+      max-width: 420px;
+      background: #121212;
+      border-radius: 20px;
+      padding: 34px 26px;
+      text-align: center;
+      box-shadow: 0 0 45px rgba(0,0,0,0.7);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    h1 {
+      font-size: 26px;
+      margin-bottom: 14px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.5em;
+      opacity: 0.9;
+    }
+
+    .btn {
+      display: block;
+      margin-top: 26px;
+      padding: 15px 22px;
+      border-radius: 14px;
+      background: linear-gradient(135deg,#ff0055,#ff7b00);
+      color: #fff;
+      font-size: 17px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 10px 26px rgba(255,0,90,0.45);
+      transition: 0.25s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.04);
+      box-shadow: 0 14px 34px rgba(255,0,90,0.6);
+    }
+
+    .note {
+      margin-top: 18px;
+      font-size: 13px;
+      opacity: 0.55;
+    }
+  </style>
+
+  <!-- META PURCHASE (PIXEL + CAPI) -->
+  <script>
+  (function () {
+    const purchaseEventId =
+      localStorage.getItem('meta_event_id') ||
+      ('purchase_' + Date.now() + '_' + Math.random().toString(36).slice(2));
+
+    if (localStorage.getItem('purchase_sent')) return;
+    localStorage.setItem('purchase_sent', '1');
+
+    if (typeof fbq === 'function') {
+      fbq('track', 'Purchase', {
+        value: 1.00,
+        currency: 'USD'
+      }, { eventID: purchaseEventId });
+    }
+
+    fetch('/api/meta', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        event_name: 'Purchase',
+        event_id: purchaseEventId,
+        url: window.location.href
+      })
+    });
+  })();
+  </script>
+  <!-- END META PURCHASE -->
+
+</head>
+
+<body>
+  <div class="box">
+    <h1>Seu acesso está pronto</h1>
+
+    <p>
+      O conteúdo que você solicitou já foi liberado.<br><br>
+      Para uma experiência completa e sem restrições,
+      continue pelo ambiente privado abaixo.
+    </p>
+
+    <a href="https://acesso-dayanezinha.vercel.app/" class="btn">
+      Acessar agora 🔥
+    </a>
+
+    <div class="note">
+      Acesso individual • não compartilhe
+    </div>
+  </div>
+</body>
+</html>
