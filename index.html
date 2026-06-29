@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Seu acesso está pronto</title>
 
-  <!-- META PIXEL BASE -->
+  <meta http-equiv="Delegate-CH" content="sec-ch-ua https://trafficjunky.net; sec-ch-ua-arch https://trafficjunky.net; sec-ch-ua-full-version-list https://trafficjunky.net; sec-ch-ua-mobile https://trafficjunky.net; sec-ch-ua-model https://trafficjunky.net; sec-ch-ua-platform https://trafficjunky.net; sec-ch-ua-platform-version https://trafficjunky.net;">
+
+
   <script>
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -19,7 +21,7 @@
   fbq('init', '3106420649560520');
   </script>
 
-  <!-- PURCHASE + CAPI (DEDUP) -->
+
   <script>
   const metaEventId =
     'purchase_' + Date.now() + '_' + Math.random().toString(36).slice(2);
@@ -105,7 +107,7 @@
     }
   </style>
 
-  <!-- META PURCHASE (PIXEL + CAPI) -->
+
   <script>
   (function () {
     const purchaseEventId =
@@ -133,11 +135,25 @@
     });
   })();
   </script>
-  <!-- END META PURCHASE -->
 
-</head>
 
-<body>
+
+  <script>
+    (function() {
+      var randomNumber = Math.floor(Math.random() * 1000000000);
+      var transactionId = 'tj_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
+      var img = document.createElement('img');
+      img.id = '1000576791_cpa_testing';
+      img.src = 'https://trafficjunky.net/ct?a=1000576791&member_id=1009014291&cb=' + randomNumber + '&cti=' + transactionId + '&ctv=1.00&ctd=Acesso_Privado';
+      img.width = 1;
+      img.height = 1;
+      img.style.border = '0';
+      img.style.display = 'none';
+      document.body.appendChild(img);
+    })();
+  </script>
+
+
   <div class="box">
     <h1>Seu acesso está pronto</h1>
 
@@ -157,5 +173,3 @@
   </div>
 </body>
 </html>
-
-
